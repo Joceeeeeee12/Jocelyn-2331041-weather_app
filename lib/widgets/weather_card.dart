@@ -38,7 +38,7 @@ class WeatherCard extends StatelessWidget {
         children: [
           // Top section — city & timestamp
           Padding(
-            padding: const EdgeInsets.fromLTRB(24, 24, 24, 0),
+            padding: const EdgeInsets.fromLTRB(24, 16, 24, 0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -49,29 +49,28 @@ class WeatherCard extends StatelessWidget {
                       weather.cityName,
                       style: const TextStyle(
                         color: Colors.white,
-                        fontSize: 26,
+                        fontSize: 22,
                         fontWeight: FontWeight.bold,
                         letterSpacing: 0.5,
                       ),
                     ),
-                    const SizedBox(height: 4),
+                    const SizedBox(height: 2),
                     Row(
                       children: [
                         const Icon(Icons.access_time_rounded,
-                            color: Colors.white60, size: 12),
+                            color: Colors.white60, size: 11),
                         const SizedBox(width: 4),
                         Text(
                           'Updated: ${weather.formattedFetchTime}',
                           style: const TextStyle(
                             color: Colors.white60,
-                            fontSize: 11,
+                            fontSize: 10,
                           ),
                         ),
                       ],
                     ),
                   ],
                 ),
-                // Condition badge
                 Container(
                   padding: const EdgeInsets.symmetric(
                       horizontal: 12, vertical: 6),
@@ -92,12 +91,12 @@ class WeatherCard extends StatelessWidget {
             ),
           ),
 
-          // Big emoji icon
+          // Emoji
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16),
+            padding: const EdgeInsets.only(top: 12, bottom: 4),
             child: Text(
               weather.conditionEmoji,
-              style: const TextStyle(fontSize: 100),
+              style: const TextStyle(fontSize: 75),
             ),
           ),
 
@@ -106,32 +105,32 @@ class WeatherCard extends StatelessWidget {
             '${weather.temperature.toStringAsFixed(1)}°C',
             style: const TextStyle(
               color: Colors.white,
-              fontSize: 72,
+              fontSize: 58,
               fontWeight: FontWeight.w200,
               letterSpacing: -2,
             ),
           ),
 
-          // H/L temperature (dari forecast hari ini)
+          // H/L
           if (weather.forecastDays.isNotEmpty)
             Padding(
-              padding: const EdgeInsets.only(top: 4),
+              padding: const EdgeInsets.only(top: 2, bottom: 4),
               child: Text(
                 'H: ${weather.forecastDays[0].maxTemperature.toStringAsFixed(0)}°  L: ${weather.forecastDays[0].minTemperature.toStringAsFixed(0)}°',
                 style: const TextStyle(
                   color: Colors.white70,
-                  fontSize: 14,
+                  fontSize: 13,
                 ),
               ),
             ),
 
-          const SizedBox(height: 24),
+          const SizedBox(height: 14),
 
           // Detail row
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24),
             child: Container(
-              padding: const EdgeInsets.symmetric(vertical: 16),
+              padding: const EdgeInsets.symmetric(vertical: 12),
               decoration: BoxDecoration(
                 color: Colors.white.withValues(alpha: 0.15),
                 borderRadius: BorderRadius.circular(20),
@@ -151,7 +150,7 @@ class WeatherCard extends StatelessWidget {
             ),
           ),
 
-          const SizedBox(height: 24),
+          const SizedBox(height: 14),
 
           // Forecast section
           if (weather.forecastDays.isNotEmpty) ...[
@@ -161,14 +160,14 @@ class WeatherCard extends StatelessWidget {
                 '7-Day Forecast',
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 14,
+                  fontSize: 13,
                   fontWeight: FontWeight.bold,
                 ),
               ),
             ),
-            const SizedBox(height: 12),
+            const SizedBox(height: 8),
             SizedBox(
-              height: 120,
+              height: 110,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -181,7 +180,7 @@ class WeatherCard extends StatelessWidget {
             ),
           ],
 
-          const SizedBox(height: 24),
+          const SizedBox(height: 20),
         ],
       ),
     );
@@ -198,7 +197,7 @@ class WeatherCard extends StatelessWidget {
   Widget _buildForecastItem(ForecastDay day, bool isToday) {
     return Container(
       margin: const EdgeInsets.only(right: 10),
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
       decoration: BoxDecoration(
         color: isToday
             ? Colors.white.withValues(alpha: 0.3)
@@ -217,21 +216,20 @@ class WeatherCard extends StatelessWidget {
             style: TextStyle(
               color: isToday ? Colors.white : Colors.white70,
               fontSize: 11,
-              fontWeight:
-                  isToday ? FontWeight.bold : FontWeight.normal,
+              fontWeight: isToday ? FontWeight.bold : FontWeight.normal,
             ),
           ),
-          const SizedBox(height: 4),
+          const SizedBox(height: 2),
           Text(
             day.conditionEmoji,
-            style: const TextStyle(fontSize: 20),
+            style: const TextStyle(fontSize: 18),
           ),
-          const SizedBox(height: 4),
+          const SizedBox(height: 2),
           Text(
             '${day.maxTemperature.toStringAsFixed(0)}°',
             style: const TextStyle(
               color: Colors.white,
-              fontSize: 13,
+              fontSize: 12,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -239,7 +237,7 @@ class WeatherCard extends StatelessWidget {
             '${day.minTemperature.toStringAsFixed(0)}°',
             style: const TextStyle(
               color: Colors.white60,
-              fontSize: 11,
+              fontSize: 10,
             ),
           ),
         ],

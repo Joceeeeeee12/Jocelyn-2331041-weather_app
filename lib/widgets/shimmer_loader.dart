@@ -14,7 +14,6 @@ class ShimmerLoader extends StatelessWidget {
     return isSearchMode ? _buildSearchShimmer() : _buildHomeShimmer();
   }
 
-  // Shimmer untuk HomeScreen — mirip WeatherCard besar
   Widget _buildHomeShimmer() {
     return Shimmer.fromColors(
       baseColor: Colors.grey.shade300,
@@ -27,13 +26,24 @@ class ShimmerLoader extends StatelessWidget {
             // Shimmer WeatherCard besar
             Container(
               width: double.infinity,
-              height: 420,
+              height: 580,
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(32),
               ),
             ),
             const SizedBox(height: 24),
+
+            // Shimmer label "Filter by Condition"
+            Container(
+              width: 140,
+              height: 16,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(8),
+              ),
+            ),
+            const SizedBox(height: 8),
 
             // Shimmer filter chips
             Row(
@@ -63,7 +73,7 @@ class ShimmerLoader extends StatelessWidget {
             const SizedBox(height: 12),
 
             // Shimmer compact cards
-            ...List.generate(4, (index) {
+            ...List.generate(2, (index) {
               return Container(
                 margin: const EdgeInsets.only(bottom: 10),
                 width: double.infinity,
@@ -80,7 +90,6 @@ class ShimmerLoader extends StatelessWidget {
     );
   }
 
-  // Shimmer untuk SearchScreen — mirip list item hasil search
   Widget _buildSearchShimmer() {
     return Shimmer.fromColors(
       baseColor: Colors.grey.shade300,
